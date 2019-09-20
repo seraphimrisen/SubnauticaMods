@@ -1,8 +1,8 @@
-﻿namespace NitrogenMod.Items
-{
-    using System.Collections.Generic;
-    using SMLHelper.V2.Crafting;
+﻿using System.Collections.Generic;
+using SMLHelper.V2.Crafting;
 
+namespace NitrogenMod.Items
+{
     class ChemosynthesisTank : O2TanksCore
     {
         public ChemosynthesisTank()
@@ -23,11 +23,11 @@
                 {
                     new Ingredient(TechType.PlasteelTank, 1),
                     new Ingredient(DummySuitItems.ThermoBacteriaID, 4),
-                    new Ingredient(TechType.Kyanite, 1),
+                    new Ingredient(TechType.Kyanite, 1)
                 }
             };
         }
 
-        private void SetStaticTechType() => ChemosynthesisTankID = this.TechType;
+        private void SetStaticTechType() => ChemosynthesisTankID = TechType;
     }
 }

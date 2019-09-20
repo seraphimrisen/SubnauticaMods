@@ -1,11 +1,11 @@
-﻿namespace NitrogenMod
-{
-    using System;
-    using SMLHelper.V2.Options;
-    using System.IO;
-    using Patchers;
-    using Common;
+﻿using System;
+using System.IO;
+using Common;
+using NitrogenMod.Patchers;
+using SMLHelper.V2.Options;
 
+namespace NitrogenMod
+{
     class NitrogenOptions : ModOptions
     {
         private const string configFile = "./QMods/NitrogenMod/Config.xml";
@@ -14,14 +14,20 @@
         private const string lethalName = "lethalmodeenabler";
         private const string crushEnablerName = "crushmodenabler";
         private const string specialtyTanksEnablerName = "specialtytanksenabler";
+        private const string seamothSafeEnablerName = "makeseamothsafe";
+        private const string exoSafeEnablerName = "makeexosafe";
+        private const string subSafeEnablerName = "makesubsafe";
 
         private const string nitroSliderName = "damagescalerslider";
         private const string crushSliderName = "crushdepthslider";
 
         public bool nitroEnabled = true;
         public bool nitroLethal = true;
-        public bool crushEnabled = false;
+        public bool crushEnabled;
         public bool specialtyTanksEnabled = true;
+        public bool SeamothSafe = true;
+        public bool ExoSafe = true;
+        public bool SubSafe = false;
 
         public float damageScaler = 1f;
 
@@ -32,6 +38,9 @@
             ToggleChanged += NonLethalOption;
             SliderChanged += DamageScalerSlider;
             ToggleChanged += CrushEnabled;
+            ToggleChanged += MakeSeamothSafe;
+            ToggleChanged += MakeExoSafe;
+            ToggleChanged += MakeSubSafe;
             ReadSettings();
         }
 
@@ -47,6 +56,36 @@
             AddToggleOption(lethalName, "Lethal Decompression", nitroLethal);
             AddSliderOption(nitroSliderName, "Damage Scaler", 0.25f, 10f, damageScaler);
             AddToggleOption(crushEnablerName, "Enable Crush Depth", crushEnabled);
+            AddToggleOption(seamothSafeEnablerName, "Safe decompression inside Seamoths", SeamothSafe);
+            AddToggleOption(exoSafeEnablerName, "Safe decompression inside Exosuits", ExoSafe);
+            AddToggleOption(subSafeEnablerName, "Safe decompression inside Cyclops", SubSafe);
+        }
+
+        private void MakeSeamothSafe(object sender, ToggleChangedEventArgs args)
+        {
+            if (args.Id != seamothSafeEnablerName)
+                return;
+            SeamothSafe = args.Value;
+            Main.SeamothSafe = args.Value;
+            SaveSettings();
+        }
+
+        private void MakeExoSafe(object sender, ToggleChangedEventArgs args)
+        {
+            if (args.Id != exoSafeEnablerName)
+                return;
+            ExoSafe = args.Value;
+            Main.ExoSafe = args.Value;
+            SaveSettings();
+        }
+
+        private void MakeSubSafe(object sender, ToggleChangedEventArgs args)
+        {
+            if (args.Id != subSafeEnablerName)
+                return;
+            SubSafe = args.Value;
+            Main.SubSafe = args.Value;
+            SaveSettings();
         }
 
         private void SpecialtyTanksEnabled(object sender, ToggleChangedEventArgs args)
