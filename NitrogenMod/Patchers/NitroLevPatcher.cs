@@ -63,7 +63,7 @@ namespace NitrogenMod.Patchers
             return false;
         }
 
-        public static bool IsInDanger(Player player, bool checkVehiclesOnly = false)
+        private static bool IsInDanger(Player player, bool checkVehiclesOnly = false)
         {
             if (Main.SeamothSafe && player.inSeamoth)
                 return false;
