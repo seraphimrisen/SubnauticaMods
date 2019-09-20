@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using SMLHelper.V2.Crafting;
-
-namespace NitrogenMod.Items
+﻿namespace NitrogenMod.Items
 {
+    using System.Collections.Generic;
+    using SMLHelper.V2.Crafting;
+
     class ReinforcedStillSuit : ReinforcedSuitsCore
     {
         public ReinforcedStillSuit()
@@ -23,11 +23,11 @@ namespace NitrogenMod.Items
                 {
                     new Ingredient(TechType.Stillsuit, 1),
                     new Ingredient(DummySuitItems.RiverEelScaleID, 2),
-                    new Ingredient(TechType.AramidFibers, 1)
+                    new Ingredient(TechType.AramidFibers, 1),
                 }
             };
         }
 
-        private void SetStaticTechType() => ReinforcedStillSuit = TechType;
+        private void SetStaticTechType() => ReinforcedStillSuit = this.TechType;
     }
 }

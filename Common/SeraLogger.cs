@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace Common
+﻿namespace Common
 {
+    using System;
+
     public class SeraLogger
     {
         /*
@@ -14,7 +14,7 @@ namespace Common
 
         public static void GenericError(string modName, Exception ex)
         {
-            Console.WriteLine(modName + " ERROR: " + ex);
+            Console.WriteLine(modName + " ERROR: " + ex.ToString());
         }
 
         /*
@@ -32,12 +32,12 @@ namespace Common
 
         public static void ConfigReadError(string modName, Exception ex)
         {
-            Console.WriteLine(modName + " Error reading file. Setting defaults. Exception: " + ex);
+            Console.WriteLine(modName + " Error reading file. Setting defaults. Exception: " + ex.ToString());
         }
 
         public static void SeralizerFailed(string file, Exception ex)
         {
-            Console.WriteLine("File I/O Error: " + file + " Exception: " + ex);
+            Console.WriteLine("File I/O Error: " + file + " Exception: " + ex.ToString());
         }
 
         /*
@@ -55,7 +55,7 @@ namespace Common
 
         public static void PatchFailed(string modName, Exception ex)
         {
-            Console.WriteLine(modName + " Patching failed. Exception: " + ex);
+            Console.WriteLine(modName + " Patching failed. Exception: " + ex.ToString());
         }
     }
 }

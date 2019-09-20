@@ -1,9 +1,9 @@
-﻿using System;
-using System.IO;
-using System.Xml.Serialization;
-
-namespace Common
+﻿namespace Common
 {
+    using System;
+    using System.Xml.Serialization;
+    using System.IO;
+
     /// <summary>
     /// SaveData gives you a common library to read and save XML files for configuration.
     /// </summary>

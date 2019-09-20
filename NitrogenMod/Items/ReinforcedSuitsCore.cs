@@ -1,11 +1,11 @@
-﻿using Common;
-using SMLHelper.V2.Assets;
-using SMLHelper.V2.Handlers;
-using SMLHelper.V2.Utility;
-using UnityEngine;
-
-namespace NitrogenMod.Items
+﻿namespace NitrogenMod.Items
 {
+    using SMLHelper.V2.Assets;
+    using SMLHelper.V2.Handlers;
+    using SMLHelper.V2.Utility;
+    using UnityEngine;
+    using Common;
+
     internal abstract class ReinforcedSuitsCore : Craftable
     {
         private const string craftTab = "ReinforcedSuits";
@@ -52,7 +52,7 @@ namespace NitrogenMod.Items
 
         public override GameObject GetGameObject()
         {
-            GameObject prefab = CraftData.GetPrefabForTechType(BaseType);
+            GameObject prefab = CraftData.GetPrefabForTechType(this.BaseType);
             var obj = GameObject.Instantiate(prefab);
 
             return obj;
@@ -60,7 +60,7 @@ namespace NitrogenMod.Items
 
         private void SetEquipmentType()
         {
-            CraftDataHandler.SetEquipmentType(TechType, DiveSuit);
+            CraftDataHandler.SetEquipmentType(this.TechType, this.DiveSuit);
         }
     }
 }

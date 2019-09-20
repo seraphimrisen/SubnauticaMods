@@ -1,9 +1,9 @@
-﻿using Common;
-using NitrogenMod.Items;
-using UnityEngine;
-
-namespace NitrogenMod.NMBehaviours
+﻿namespace NitrogenMod.NMBehaviours
 {
+    using UnityEngine;
+    using Common;
+    using Items;
+
     class SpecialtyTanks : MonoBehaviour
     {
         private const float SolarMaxDepth = 200f;
@@ -45,6 +45,7 @@ namespace NitrogenMod.NMBehaviours
                     if (cachedTemp == null) // Safety check
                     {
                         cachedTemp = WaterTemperatureSimulation.main;
+                        return;
                     }
                     else
                     {
