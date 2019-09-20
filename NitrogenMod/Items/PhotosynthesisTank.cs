@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using SMLHelper.V2.Crafting;
-
-namespace NitrogenMod.Items
+﻿namespace NitrogenMod.Items
 {
+    using System.Collections.Generic;
+    using SMLHelper.V2.Crafting;
+
     class PhotosynthesisTank : O2TanksCore
     {
         public PhotosynthesisTank()
@@ -23,12 +23,12 @@ namespace NitrogenMod.Items
                 {
                     new Ingredient(TechType.PlasteelTank, 1),
                     new Ingredient(TechType.PurpleBrainCoralPiece, 2),
-                    new Ingredient(TechType.EnameledGlass, 1)
+                    new Ingredient(TechType.EnameledGlass, 1),
                 }
             };
         }
 
-        private void SetStaticTechType() => PhotosynthesisTankID = TechType;
+        private void SetStaticTechType() => PhotosynthesisTankID = this.TechType;
 
         public override TechType RequiredForUnlock { get; } = TechType.PlasteelTank;
     }

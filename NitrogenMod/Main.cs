@@ -1,14 +1,14 @@
-﻿using System;
-using System.Reflection;
-using Common;
-using Harmony;
-using NitrogenMod.Items;
-using NitrogenMod.Patchers;
-using SMLHelper.V2.Handlers;
-using UnityEngine;
-
-namespace NitrogenMod
+﻿namespace NitrogenMod
 {
+    using System;
+    using System.Reflection;
+    using Harmony;
+    using SMLHelper.V2.Handlers;
+    using Common;
+    using Items;
+    using UnityEngine;
+    using Patchers;
+
     public class Main
     {
         public const string modName = "[NitrogenMod]";
@@ -20,9 +20,6 @@ namespace NitrogenMod
 
         public static bool specialtyTanks = true;
         public static bool nitrogenEnabled = true;
-        public static bool SeamothSafe = true;
-        public static bool ExoSafe = true;
-        public static bool SubSafe = false;
 
         public static void Patch()
         {
