@@ -1,10 +1,8 @@
-﻿namespace NitrogenMod.Patchers
-{
-    using Harmony;
-    using Items;
-    using NMBehaviours;
-    using Common;
+﻿using Harmony;
+using NitrogenMod.NMBehaviours;
 
+namespace NitrogenMod.Patchers
+{
     [HarmonyPatch(typeof(uGUI_DepthCompass))]
     [HarmonyPatch("OnDepthClassChanged")]
     internal class DepthCompassDepthClassPatcher

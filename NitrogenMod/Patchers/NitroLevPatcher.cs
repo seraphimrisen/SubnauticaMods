@@ -1,18 +1,16 @@
-﻿namespace NitrogenMod.Patchers
-{
-    using Harmony;
-    using UnityEngine;
-    using Items;
-    using NMBehaviours;
-    using Common;
+﻿using Harmony;
+using NitrogenMod.NMBehaviours;
+using UnityEngine;
 
+namespace NitrogenMod.Patchers
+{
     [HarmonyPatch(typeof(NitrogenLevel))]
     [HarmonyPatch("Update")]
     internal class NitroDamagePatcher
     {
         private static bool lethal = true;
-        private static bool _cachedActive = false;
-        private static bool _cachedAnimating = false;
+        private static bool _cachedActive;
+        private static bool _cachedAnimating;
 
         private static float damageScaler = 1f;
         
@@ -23,18 +21,18 @@
             {
                 float depthOf = Ocean.main.GetDepthOf(Player.main.gameObject);
 
-                if (depthOf < __instance.safeNitrogenDepth - 10f && UnityEngine.Random.value < 0.0125f)
+                if (depthOf < __instance.safeNitrogenDepth - 10f && Random.value < 0.0125f)
                 {
-                    global::Utils.Assert(depthOf < __instance.safeNitrogenDepth, "see log", null);
+                    Utils.Assert(depthOf < __instance.safeNitrogenDepth);
                     LiveMixin component = Player.main.gameObject.GetComponent<LiveMixin>();
                     float damage = 1f + damageScaler * (__instance.safeNitrogenDepth - depthOf) / 10f;
-                    if (component.health - damage > 0f)
-                        component.TakeDamage(damage, default, DamageType.Normal, null);
-                    else if (lethal)
-                        component.TakeDamage(damage, default, DamageType.Normal, null);
+                    if (component.health - damage > 0f && IsInDanger(Player.main, true))
+                        component.TakeDamage(damage);
+                    else if (lethal && IsInDanger(Player.main, true))
+                        component.TakeDamage(damage);
                 }
 
-                if (__instance.safeNitrogenDepth > 10f && !Player.main.IsSwimming() && UnityEngine.Random.value < 0.025f)
+                if (__instance.safeNitrogenDepth > 10f && IsInDanger(Player.main) && Random.value < 0.025f)
                 {
                     float atmosPressure = __instance.safeNitrogenDepth - 10f;
                     if (atmosPressure < 0f)
@@ -42,18 +40,18 @@
                     LiveMixin component = Player.main.gameObject.GetComponent<LiveMixin>();
                     float damage = 1f + damageScaler * (__instance.safeNitrogenDepth - atmosPressure) / 10f;
                     if (component.health - damage > 0f)
-                        component.TakeDamage(damage, default, DamageType.Normal, null);
+                        component.TakeDamage(damage);
                     else if (lethal)
-                        component.TakeDamage(damage, default, DamageType.Normal, null);
+                        component.TakeDamage(damage);
                 }
 
-                float num = 1f;
-                if (depthOf < __instance.safeNitrogenDepth && Player.main.IsSwimming())
+                float num;
+                if (depthOf < __instance.safeNitrogenDepth && !IsInDanger(Player.main))
                 {
                     num = Mathf.Clamp(2f - __instance.GetComponent<Rigidbody>().velocity.magnitude, 0f, 2f) * 1f;
                     __instance.safeNitrogenDepth = UWE.Utils.Slerp(__instance.safeNitrogenDepth, depthOf, __instance.kDissipateScalar * num * Time.deltaTime);
                 }
-                else if (!Player.main.IsSwimming() && __instance.safeNitrogenDepth > 0f)
+                else if (IsInDanger(Player.main) && __instance.safeNitrogenDepth > 0f)
                 {
                     float atmosPressure = __instance.safeNitrogenDepth - 10f;
                     if (atmosPressure < 0f)
@@ -63,6 +61,17 @@
                 HUDController(__instance);
             }
             return false;
+        }
+
+        public static bool IsInDanger(Player player, bool checkVehiclesOnly = false)
+        {
+            if (Main.SeamothSafe && player.inSeamoth)
+                return false;
+            if (Main.ExoSafe && player.inExosuit)
+                return false;
+            if (Main.SubSafe && player.currentSub.isCyclops)
+                return false;
+            return checkVehiclesOnly || !player.IsSwimming();
         }
 
         public static void Lethality(bool isLethal)

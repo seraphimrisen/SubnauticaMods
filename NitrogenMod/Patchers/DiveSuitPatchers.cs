@@ -1,8 +1,8 @@
-﻿namespace NitrogenMod.Patchers
-{
-    using Harmony;
-    using Items;
+﻿using Harmony;
+using NitrogenMod.Items;
 
+namespace NitrogenMod.Patchers
+{
     [HarmonyPatch(typeof(Player))]
     [HarmonyPatch("HasReinforcedSuit")]
     internal class HasReinforcedSuitPatcher
@@ -62,7 +62,7 @@
             PlayerGetDepthClassPatcher.divingCrushDepth = crushDepth;
 
             if (crushDepth < 8000f)
-                ErrorMessage.AddMessage("Safe diving depth now " + crushDepth.ToString() + ".");
+                ErrorMessage.AddMessage("Safe diving depth now " + crushDepth + ".");
             else
                 ErrorMessage.AddMessage("Safe diving depth now unlimited.");
             
