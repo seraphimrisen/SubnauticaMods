@@ -1,20 +1,21 @@
-﻿namespace NitrogenMod.Patchers
-{
-    using Harmony;
-    using Items;
+﻿using Harmony;
+using NitrogenMod.Items;
+using UnityEngine;
 
+namespace NitrogenMod.Patchers
+{
     [HarmonyPatch(typeof(NitrogenLevel))]
     [HarmonyPatch("OnTookBreath")]
     internal class BreathPatcher
     {
-        private static bool crushEnabled = false;
+        private static bool crushEnabled;
 
         [HarmonyPrefix]
         public static bool Prefix(ref NitrogenLevel __instance, Player player)
         {
             Inventory main = Inventory.main;
-            TechType bodySlot = Inventory.main.equipment.GetTechTypeInSlot("Body");
-            TechType headSlot = Inventory.main.equipment.GetTechTypeInSlot("Head");
+            TechType bodySlot = main.equipment.GetTechTypeInSlot("Body");
+            TechType headSlot = main.equipment.GetTechTypeInSlot("Head");
 
             if (GameModeUtils.RequiresOxygen())
             {
@@ -41,7 +42,7 @@
 
                 if (crushEnabled && Player.main.GetDepthClass() == Ocean.DepthClass.Crush)
                 {
-                    if (UnityEngine.Random.value < 0.5f)
+                    if (Random.value < 0.5f)
                     {
                         float crushDepth = PlayerGetDepthClassPatcher.divingCrushDepth;
                         if (depthOf > crushDepth)
@@ -55,7 +56,7 @@
         private static void DamagePlayer(float depthOf)
         {
             LiveMixin component = Player.main.gameObject.GetComponent<LiveMixin>();
-            component.TakeDamage(UnityEngine.Random.value * depthOf / 50f, default, DamageType.Normal, null);
+            component.TakeDamage(Random.value * depthOf / 50f);
         }
 
         public static void EnableCrush(bool isEnabled)

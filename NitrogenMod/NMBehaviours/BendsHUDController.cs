@@ -1,8 +1,8 @@
-﻿namespace NitrogenMod.NMBehaviours
-{
-    using UnityEngine;
-    using UnityEngine.UI;
+﻿using UnityEngine;
+using UnityEngine.UI;
 
+namespace NitrogenMod.NMBehaviours
+{
     class BendsHUDController : MonoBehaviour
     {
         private static BendsHUDController main;
@@ -16,7 +16,7 @@
 
         private void Awake()
         {
-            _N2HUDWarning = Instantiate<GameObject>(Main.N2HUD);
+            _N2HUDWarning = Instantiate(Main.N2HUD);
 
             canvasTransform = _N2HUDWarning.transform;
             n2Warning = canvasTransform.GetChild(0).GetComponent<Text>();

@@ -1,8 +1,8 @@
-﻿namespace NitrogenMod.Patchers
-{
-    using Harmony;
-    using UnityEngine;
+﻿using Harmony;
+using UnityEngine;
 
+namespace NitrogenMod.Patchers
+{
     [HarmonyPatch(typeof(Survival))]
     [HarmonyPatch("Use")]
     internal class SurvivalUsePatcher
@@ -46,7 +46,7 @@
                     if (__result)
                     {
                         string useEatSound = CraftData.GetUseEatSound(techType);
-                        FMODUWE.PlayOneShot(useEatSound, Player.main.transform.position, 1f);
+                        FMODUWE.PlayOneShot(useEatSound, Player.main.transform.position);
                     }
                 }
             }

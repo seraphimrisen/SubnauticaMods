@@ -1,9 +1,9 @@
-﻿namespace NitrogenMod.Items
-{
-    using SMLHelper.V2.Assets;
-    using SMLHelper.V2.Handlers;
-    using UnityEngine;
+﻿using SMLHelper.V2.Assets;
+using SMLHelper.V2.Handlers;
+using UnityEngine;
 
+namespace NitrogenMod.Items
+{
     internal abstract class DummySuitItems : Spawnable
     {
         public static TechType RiverEelScaleID { get; protected set; }
@@ -39,7 +39,7 @@
 
         public override GameObject GetGameObject()
         {
-            GameObject prefab = CraftData.GetPrefabForTechType(this.BaseType);
+            GameObject prefab = CraftData.GetPrefabForTechType(BaseType);
             var obj = GameObject.Instantiate(prefab);
 
             return obj;
@@ -58,7 +58,7 @@
 
         public override string AssetsFolder { get; } = @"NitrogenMod/Assets";
 
-        private void SetStaticTechType() => RiverEelScaleID = this.TechType;
+        private void SetStaticTechType() => RiverEelScaleID = TechType;
     }
 
     class LavaLizardScale : DummySuitItems
@@ -73,7 +73,7 @@
 
         public override string AssetsFolder { get; } = @"NitrogenMod/Assets";
 
-        private void SetStaticTechType() => LavaLizardScaleID = this.TechType;
+        private void SetStaticTechType() => LavaLizardScaleID = TechType;
     }
 
     class ThermophileSample : DummySuitItems
@@ -88,6 +88,6 @@
 
         public override string AssetsFolder { get; } = @"NitrogenMod/Assets";
 
-        private void SetStaticTechType() => ThermoBacteriaID = this.TechType;
+        private void SetStaticTechType() => ThermoBacteriaID = TechType;
     }
 }

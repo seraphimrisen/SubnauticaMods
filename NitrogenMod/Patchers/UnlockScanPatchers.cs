@@ -1,8 +1,8 @@
-﻿namespace NitrogenMod.Patchers
-{
-    using Harmony;
-    using Items;
+﻿using Harmony;
+using NitrogenMod.Items;
 
+namespace NitrogenMod.Patchers
+{
     [HarmonyPatch(typeof(PDAScanner))]
     [HarmonyPatch("Unlock")]
     internal class UnlockScanPatchers
