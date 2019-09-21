@@ -1,11 +1,11 @@
-﻿using System;
-using System.IO;
-using Common;
-using NitrogenMod.Patchers;
-using SMLHelper.V2.Options;
-
-namespace NitrogenMod
+﻿namespace NitrogenMod
 {
+    using System;
+    using System.IO;
+    using Common;
+    using NitrogenMod.Patchers;
+    using SMLHelper.V2.Options;
+    
     class NitrogenOptions : ModOptions
     {
         private const string configFile = "./QMods/NitrogenMod/Config.xml";

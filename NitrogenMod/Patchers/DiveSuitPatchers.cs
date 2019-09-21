@@ -1,8 +1,8 @@
-﻿using Harmony;
-using NitrogenMod.Items;
-
-namespace NitrogenMod.Patchers
+﻿namespace NitrogenMod.Patchers
 {
+    using Harmony;
+    using NitrogenMod.Items;
+    
     [HarmonyPatch(typeof(Player))]
     [HarmonyPatch("HasReinforcedSuit")]
     internal class HasReinforcedSuitPatcher

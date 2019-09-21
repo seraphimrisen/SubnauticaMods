@@ -1,16 +1,16 @@
-﻿using Harmony;
-using NitrogenMod.NMBehaviours;
-using UnityEngine;
-
-namespace NitrogenMod.Patchers
+﻿namespace NitrogenMod.Patchers
 {
+    using Harmony;
+    using NitrogenMod.NMBehaviours;
+    using UnityEngine;
+    
     [HarmonyPatch(typeof(NitrogenLevel))]
     [HarmonyPatch("Update")]
     internal class NitroDamagePatcher
     {
         private static bool lethal = true;
-        private static bool _cachedActive;
-        private static bool _cachedAnimating;
+        private static bool _cachedActive = false;
+        private static bool _cachedAnimating = false;
 
         private static float damageScaler = 1f;
         
@@ -21,15 +21,15 @@ namespace NitrogenMod.Patchers
             {
                 float depthOf = Ocean.main.GetDepthOf(Player.main.gameObject);
 
-                if (depthOf < __instance.safeNitrogenDepth - 10f && Random.value < 0.0125f)
+                if (depthOf < __instance.safeNitrogenDepth - 10f && UnityEngine.Random.value < 0.0125f)
                 {
-                    Utils.Assert(depthOf < __instance.safeNitrogenDepth);
+                    global::Utils.Assert(depthOf < __instance.safeNitrogenDepth, "see log", null);
                     LiveMixin component = Player.main.gameObject.GetComponent<LiveMixin>();
                     float damage = 1f + damageScaler * (__instance.safeNitrogenDepth - depthOf) / 10f;
-                    if (component.health - damage > 0f && IsInDanger(Player.main, true))
-                        component.TakeDamage(damage);
-                    else if (lethal && IsInDanger(Player.main, true))
-                        component.TakeDamage(damage);
+                    if (component.health - damage > 0f)
+                        component.TakeDamage(damage, default, DamageType.Normal, null);
+                    else if (lethal)
+                        component.TakeDamage(damage, default, DamageType.Normal, null);
                 }
 
                 if (__instance.safeNitrogenDepth > 10f && IsInDanger(Player.main) && Random.value < 0.025f)
@@ -40,9 +40,9 @@ namespace NitrogenMod.Patchers
                     LiveMixin component = Player.main.gameObject.GetComponent<LiveMixin>();
                     float damage = 1f + damageScaler * (__instance.safeNitrogenDepth - atmosPressure) / 10f;
                     if (component.health - damage > 0f)
-                        component.TakeDamage(damage);
+                        component.TakeDamage(damage, default, DamageType.Normal, null);
                     else if (lethal)
-                        component.TakeDamage(damage);
+                        component.TakeDamage(damage, default, DamageType.Normal, null);
                 }
 
                 float num;

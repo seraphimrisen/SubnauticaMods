@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using SMLHelper.V2.Crafting;
-
-namespace NitrogenMod.Items
+﻿namespace NitrogenMod.Items
 {
+    using System.Collections.Generic;
+    using SMLHelper.V2.Crafting;
+    
     class ReinforcedSuitMark3 : ReinforcedSuitsCore
     {
         public ReinforcedSuitMark3()
@@ -28,6 +28,6 @@ namespace NitrogenMod.Items
             };
         }
 
-        private void SetStaticTechType() => ReinforcedSuit3ID = TechType;
+        private void SetStaticTechType() => ReinforcedSuit3ID = this.TechType;
     }
 }
