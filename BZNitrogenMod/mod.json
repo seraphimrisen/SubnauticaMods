@@ -1,0 +1,10 @@
+{
+  "Id": "NitrogenMod",
+  "DisplayName": "Nitrogen Mod",
+  "Author": "SeraphimRisen",
+  "Version": "1.5.0",
+  "Enable": true,
+  "AssemblyName": "BZNitrogenMod.dll",
+  "Dependencies": ["SMLHelper"],
+  "Game": "BelowZero"
+}
