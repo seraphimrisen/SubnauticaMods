@@ -20,23 +20,16 @@
             riverEelScale.Patch();
             lavaLizardScale.Patch();
             thermoSample.Patch();
-            try
-            {
 
                 //Todo: These need to be updated to BZ Creatures.
-                CraftDataHandler.SetHarvestOutput(TechType.SpineEel, RiverEelScaleID);
-                CraftDataHandler.SetHarvestType(TechType.SpineEel, HarvestType.DamageAlive);
+                CraftDataHandler.SetHarvestOutput(TechType.SquidShark, RiverEelScaleID);
+                CraftDataHandler.SetHarvestType(TechType.SquidShark, HarvestType.DamageAlive);
 
-                CraftDataHandler.SetHarvestOutput(TechType.LavaLarva, ThermoBacteriaID);
-                CraftDataHandler.SetHarvestType(TechType.LavaLarva, HarvestType.DamageAlive);
+                CraftDataHandler.SetHarvestOutput(TechType.RockPuncher, ThermoBacteriaID);
+                CraftDataHandler.SetHarvestType(TechType.RockPuncher, HarvestType.DamageAlive);
 
-                CraftDataHandler.SetHarvestOutput(TechType.LavaLizard, LavaLizardScaleID);
-                CraftDataHandler.SetHarvestType(TechType.LavaLizard, HarvestType.DamageAlive);
-            }
-            catch (Exception)
-            {
-
-            }
+                CraftDataHandler.SetHarvestOutput(TechType.Cryptosuchus, LavaLizardScaleID);
+                CraftDataHandler.SetHarvestType(TechType.Cryptosuchus, HarvestType.DamageAlive);
         }
 
         protected abstract TechType BaseType { get; }
