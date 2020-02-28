@@ -24,7 +24,7 @@
                 {
                     new Ingredient(ReinforcedSuit2ID, 1),
                     new Ingredient(TechType.Kyanite, 2),
-                    new Ingredient(DummySuitItems.LavaLizardScaleID, 2),
+                    new Ingredient(DummySuitItems.CryptosuchusScaleID, 2),
                 }
             };
         }

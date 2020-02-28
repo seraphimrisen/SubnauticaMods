@@ -7,29 +7,36 @@
 
     internal abstract class DummySuitItems : Spawnable
     {
-        public static TechType RiverEelScaleID { get; protected set; }
-        public static TechType LavaLizardScaleID { get; protected set; }
+        public static TechType SquidSharkScaleID { get; protected set; }
+        public static TechType CryptosuchusScaleID { get; protected set; }
         public static TechType ThermoBacteriaID { get; protected set; }
+        public static TechType TitanHoleSampleID { get; protected set; }
+
 
         internal static void PatchDummyItems()
         {
-            var riverEelScale = new RiverEelScale();
-            var lavaLizardScale = new LavaLizardScale();
+            var squidSharkScale = new SquidSharkScale();
+            var cryptosuchusScale = new CryptosuchusScale();
             var thermoSample = new ThermophileSample();
+            var titanHoleSample = new TitanHoleSample();
 
-            riverEelScale.Patch();
-            lavaLizardScale.Patch();
+            squidSharkScale.Patch();
+            cryptosuchusScale.Patch();
             thermoSample.Patch();
+            titanHoleSample.Patch();
 
-                //Todo: These need to be updated to BZ Creatures.
-                CraftDataHandler.SetHarvestOutput(TechType.SquidShark, RiverEelScaleID);
-                CraftDataHandler.SetHarvestType(TechType.SquidShark, HarvestType.DamageAlive);
+            CraftDataHandler.SetHarvestOutput(TechType.SquidShark, SquidSharkScaleID);
+            CraftDataHandler.SetHarvestType(TechType.SquidShark, HarvestType.DamageAlive);
 
-                CraftDataHandler.SetHarvestOutput(TechType.RockPuncher, ThermoBacteriaID);
-                CraftDataHandler.SetHarvestType(TechType.RockPuncher, HarvestType.DamageAlive);
+            CraftDataHandler.SetHarvestOutput(TechType.RockPuncher, ThermoBacteriaID);
+            CraftDataHandler.SetHarvestType(TechType.RockPuncher, HarvestType.DamageAlive);
 
-                CraftDataHandler.SetHarvestOutput(TechType.Cryptosuchus, LavaLizardScaleID);
-                CraftDataHandler.SetHarvestType(TechType.Cryptosuchus, HarvestType.DamageAlive);
+            CraftDataHandler.SetHarvestOutput(TechType.Cryptosuchus, CryptosuchusScaleID);
+            CraftDataHandler.SetHarvestType(TechType.Cryptosuchus, HarvestType.DamageAlive);
+
+            CraftDataHandler.SetHarvestOutput(TechType.TitanHolefish, TitanHoleSampleID);
+            CraftDataHandler.SetHarvestType(TechType.TitanHolefish, HarvestType.DamageAlive);
+
         }
 
         protected abstract TechType BaseType { get; }
@@ -48,10 +55,10 @@
         }
     }
 
-    class RiverEelScale : DummySuitItems
+    class SquidSharkScale : DummySuitItems
     {
-        public RiverEelScale()
-            : base(classID: "rivereelscale", friendlyName: "River Prowler Scale", description: "A scale from the head of a River Prowler. Has uses in depth-resistant fabrication.")
+        public SquidSharkScale()
+            : base(classID: "squidsharkscale", friendlyName: "Squid Shark Scale", description: "A scale from the head of a Squid Shark. Has uses in depth-resistant fabrication.")
         {
             OnFinishedPatching += SetStaticTechType;
         }
@@ -60,13 +67,13 @@
 
         public override string AssetsFolder { get; } = @"BZNitrogenMod/Assets";
 
-        private void SetStaticTechType() => RiverEelScaleID = this.TechType;
+        private void SetStaticTechType() => SquidSharkScaleID = this.TechType;
     }
 
-    class LavaLizardScale : DummySuitItems
+    class CryptosuchusScale : DummySuitItems
     {
-        public LavaLizardScale()
-            : base(classID: "lavalizardscale", friendlyName: "Lava Lizard Scale", description: "A scale from a Lava Lizard. Has uses in depth and heat resistant fabrication.")
+        public CryptosuchusScale()
+            : base(classID: "cryptosuchusscale", friendlyName: "Cryptosuchus Scale", description: "A scale from a Cryptosuchus. Has uses in depth and heat resistant fabrication.")
         {
             OnFinishedPatching += SetStaticTechType;
         }
@@ -75,13 +82,28 @@
 
         public override string AssetsFolder { get; } = @"BZNitrogenMod/Assets";
 
-        private void SetStaticTechType() => LavaLizardScaleID = this.TechType;
+        private void SetStaticTechType() => CryptosuchusScaleID = this.TechType;
     }
 
     class ThermophileSample : DummySuitItems
     {
         public ThermophileSample()
-            : base(classID: "thermophilesample", friendlyName: "Thermophile Bacterial Sample", description: "A viable sample of a unique thermophile bacteria found in Lava Larvae. Undergoes chemosynthesis at high temperatures.")
+            : base(classID: "thermophilesample", friendlyName: "Thermophile Bacterial Sample", description: "A viable sample of a unique thermophile bacteria found on Rock Punchers belly. Undergoes chemosynthesis at high temperatures.")
+        {
+            OnFinishedPatching += SetStaticTechType;
+        }
+
+        protected override TechType BaseType { get; } = TechType.StalkerTooth;
+
+        public override string AssetsFolder { get; } = @"BZNitrogenMod/Assets";
+
+        private void SetStaticTechType() => ThermoBacteriaID = this.TechType;
+    }
+
+    class TitanHoleSample : DummySuitItems
+    {
+        public TitanHoleSample()
+            : base(classID: "titanholesample", friendlyName: "Titanhole Fish Bacterial Sample", description: "A viable sample of a unique oxygen producing bacteria found in the hole of a Titan Hole Fish. Undergoes photosynthisis when explosed to sunlight.")
         {
             OnFinishedPatching += SetStaticTechType;
         }
