@@ -10,7 +10,6 @@
         public static TechType SquidSharkScaleID { get; protected set; }
         public static TechType CryptosuchusScaleID { get; protected set; }
         public static TechType ThermoBacteriaID { get; protected set; }
-        public static TechType TitanHoleSampleID { get; protected set; }
 
 
         internal static void PatchDummyItems()
@@ -18,12 +17,10 @@
             var squidSharkScale = new SquidSharkScale();
             var cryptosuchusScale = new CryptosuchusScale();
             var thermoSample = new ThermophileSample();
-            var titanHoleSample = new TitanHoleSample();
 
             squidSharkScale.Patch();
             cryptosuchusScale.Patch();
             thermoSample.Patch();
-            titanHoleSample.Patch();
 
             CraftDataHandler.SetHarvestOutput(TechType.SquidShark, SquidSharkScaleID);
             CraftDataHandler.SetHarvestType(TechType.SquidShark, HarvestType.DamageAlive);
@@ -34,9 +31,14 @@
             CraftDataHandler.SetHarvestOutput(TechType.Cryptosuchus, CryptosuchusScaleID);
             CraftDataHandler.SetHarvestType(TechType.Cryptosuchus, HarvestType.DamageAlive);
 
-            CraftDataHandler.SetHarvestOutput(TechType.TitanHolefish, TitanHoleSampleID);
-            CraftDataHandler.SetHarvestType(TechType.TitanHolefish, HarvestType.DamageAlive);
+            CraftDataHandler.SetHarvestOutput(TechType.OxygenPlant, TechType.PurpleBrainCoralPiece);
+            CraftDataHandler.SetHarvestType(TechType.OxygenPlant, HarvestType.DamageAlive);
 
+            CraftDataHandler.SetHarvestOutput(TechType.ShadowLeviathan, TechType.Kyanite);
+            CraftDataHandler.SetHarvestType(TechType.ShadowLeviathan, HarvestType.DamageAlive);
+
+            CraftDataHandler.SetHarvestOutput(TechType.IceWorm, TechType.Kyanite);
+            CraftDataHandler.SetHarvestType(TechType.IceWorm, HarvestType.DamageAlive);
         }
 
         protected abstract TechType BaseType { get; }
@@ -89,21 +91,6 @@
     {
         public ThermophileSample()
             : base(classID: "thermophilesample", friendlyName: "Thermophile Bacterial Sample", description: "A viable sample of a unique thermophile bacteria found on Rock Punchers belly. Undergoes chemosynthesis at high temperatures.")
-        {
-            OnFinishedPatching += SetStaticTechType;
-        }
-
-        protected override TechType BaseType { get; } = TechType.StalkerTooth;
-
-        public override string AssetsFolder { get; } = @"BZNitrogenMod/Assets";
-
-        private void SetStaticTechType() => ThermoBacteriaID = this.TechType;
-    }
-
-    class TitanHoleSample : DummySuitItems
-    {
-        public TitanHoleSample()
-            : base(classID: "titanholesample", friendlyName: "Titanhole Fish Bacterial Sample", description: "A viable sample of a unique oxygen producing bacteria found in the hole of a Titan Hole Fish. Undergoes photosynthisis when explosed to sunlight.")
         {
             OnFinishedPatching += SetStaticTechType;
         }
