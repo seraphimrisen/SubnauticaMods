@@ -1,7 +1,9 @@
 ﻿namespace NitrogenMod.Patchers
 {
-    using Harmony;
+    using HarmonyLib;
     using Items;
+    using System.Collections;
+    using System.Collections.Generic;
 
     // Code provided by AlexejheroYTB to remove a destructive prefix
     [HarmonyPatch(typeof(Player), nameof(Player.HasReinforcedSuit))]
@@ -24,9 +26,9 @@
         {
             __instance.temperatureDamage.minDamageTemperature = 49f;
             TechType bodySlot = Inventory.main.equipment.GetTechTypeInSlot("Body");
-            float crushDepth = 200f;
-
-            if (bodySlot == TechType.RadiationSuit)
+            float crushDepth = Main.GetDiveSuitDepth(bodySlot);
+            float minTempBonus = Main.GetDiveSuitTempBonus(bodySlot);
+            /*if (bodySlot == TechType.RadiationSuit)
                 crushDepth = 500f;
             else if (bodySlot == TechType.ReinforcedDiveSuit)
             {
@@ -49,12 +51,14 @@
             {
                 __instance.temperatureDamage.minDamageTemperature += 35f;
                 crushDepth = 8000f;
-            }
+            }*/
+
             if (__instance.HasReinforcedGloves())
             {
-                __instance.temperatureDamage.minDamageTemperature += 6f;
+                minTempBonus += 6f;
             }
             PlayerGetDepthClassPatcher.divingCrushDepth = crushDepth;
+            __instance.temperatureDamage.minDamageTemperature += minTempBonus;
 
             if (crushDepth < 8000f)
                 ErrorMessage.AddMessage("Safe diving depth now " + crushDepth.ToString() + ".");

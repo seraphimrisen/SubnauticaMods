@@ -1,6 +1,6 @@
 ﻿namespace NitrogenMod.Patchers
 {
-    using Harmony;
+    using HarmonyLib;
     using Items;
 
     [HarmonyPatch(typeof(NitrogenLevel))]
@@ -14,7 +14,7 @@
         {
             Inventory main = Inventory.main;
             TechType bodySlot = Inventory.main.equipment.GetTechTypeInSlot("Body");
-            TechType headSlot = Inventory.main.equipment.GetTechTypeInSlot("Head");
+            //TechType headSlot = Inventory.main.equipment.GetTechTypeInSlot("Head");
 
             if (GameModeUtils.RequiresOxygen())
             {
@@ -24,7 +24,8 @@
                     float modifier = 1f;
                     if (depthOf > 0f)
                     {
-                        if (bodySlot == ReinforcedSuitsCore.ReinforcedSuit3ID)
+                        modifier = Main.GetDiveSuitBreathMult(bodySlot);
+                        /*if (bodySlot == ReinforcedSuitsCore.ReinforcedSuit3ID)
                             modifier = 0.55f;
                         else if ((bodySlot == ReinforcedSuitsCore.ReinforcedSuit2ID || bodySlot == ReinforcedSuitsCore.ReinforcedStillSuit) && depthOf <= 1300f)
                             modifier = 0.75f;
@@ -33,6 +34,8 @@
                         else if ((bodySlot == TechType.RadiationSuit || bodySlot == TechType.Stillsuit) && depthOf <= 500f)
                             modifier = 0.95f;
                         if (headSlot == TechType.Rebreather)
+                            modifier -= 0.05f;*/
+                        if (Inventory.main.equipment.GetCount(TechType.Rebreather) > 0)
                             modifier -= 0.05f;
                     }
                     float num = __instance.depthCurve.Evaluate(depthOf / 2048f);
