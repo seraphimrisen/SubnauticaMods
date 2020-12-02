@@ -19,7 +19,7 @@
         // The capacity of your battery - power cells are always double this
         public int BatteryCapacity { get; } = 2500;
         // How to unlock your batteries
-        public TechType UnlocksWith { get; } = TechType.Warper;
+        public TechType UnlocksWith { get; } = BioPlasmaItems.BioPlasmaID;
         // The techtype for the battery
         public string BatteryID { get; } = "BiochemBattery";
         // The user-facing name for the battery
