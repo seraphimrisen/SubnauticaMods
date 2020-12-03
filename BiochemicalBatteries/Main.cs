@@ -9,7 +9,7 @@ namespace BiochemicalBatteries
 {
     using System;
     using System.Reflection;
-    using Harmony;
+    using HarmonyLib;
     using Items;
     using Common;
     using CustomBatteries.API;
@@ -23,7 +23,7 @@ namespace BiochemicalBatteries
             SeraLogger.PatchStart(modName, "1.0.0");
             try
             {
-                var harmony = HarmonyInstance.Create("seraphimrisen.biochemicalbattery.mod");
+                var harmony = new Harmony("seraphimrisen.biochemicalbattery.mod");
 
                 BioPlasmaItems.PatchBioPlasmaItems();
 

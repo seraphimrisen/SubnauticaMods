@@ -272,3 +272,4 @@ paket-files/
 __pycache__/
 *.pyc
 References/Subnautica/CustomBatteries.dll
+*.dll

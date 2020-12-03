@@ -1,6 +1,6 @@
 ﻿namespace NitrogenMod.Patchers
 {
-    using Harmony;
+    using HarmonyLib;
     using UnityEngine;
     using Items;
     using NMBehaviours;
@@ -36,7 +36,7 @@
                 }
 
                 bool isInVehicle = Player.main.GetCurrentSub()?.isCyclops == true ||
-                   Player.main.GetVehicle() is Seamoth ||
+                   Player.main.GetVehicle() is SeaMoth ||
                    Player.main.GetVehicle() is Exosuit;
 
                 if (__instance.safeNitrogenDepth > 10f && !Player.main.IsSwimming() && UnityEngine.Random.value < 0.025f)
