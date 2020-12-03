@@ -9,18 +9,7 @@
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
-References/Subnautica/Assembly-CSharp.dll
-References/Subnautica/Assembly-CSharp_publicized.dll
-References/Subnautica/Assembly-CSharp-firstpass.dll
-References/Subnautica/Assembly-CSharp-firstpass_publicized.dll
-References/Subnautica/UnityEngine.dll
-References/Subnautica/UnityEngine.AnimationModule.dll
-References/Subnautica/UnityEngine.AssetBundleModule.dll
-References/Subnautica/UnityEngine.CoreModule.dll
-References/Subnautica/UnityEngine.PhysicsModule.dll
-References/Subnautica/UnityEngine.UI.dll
-References/Subnautica/SMLHelper.dll
-References/Subnautica/0Harmony-1.2.0.1.dll
+References/*
 
 # Build results
 [Dd]ebug/
@@ -271,5 +260,3 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
-References/Subnautica/CustomBatteries.dll
-*.dll
