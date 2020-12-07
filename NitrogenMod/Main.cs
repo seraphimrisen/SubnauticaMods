@@ -57,7 +57,7 @@
             if (minTempBonus > 0)
                 diveSuitMinTemps.Add(diveSuit, minTempBonus);
             if (breathMultiplier != 1f)
-                diveSuitBreathModifiers.Add(diveSuit, minTempBonus);
+                diveSuitBreathModifiers.Add(diveSuit, breathMultiplier);
         }
 
         public static float GetDiveSuitDepth(TechType diveSuit)
