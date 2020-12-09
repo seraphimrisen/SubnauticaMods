@@ -14,6 +14,7 @@
     public class Main
     {
         public const string modName = "[NitrogenMod]";
+        public const string version = "1.6.0";
 
         private const string modFolder = "./QMods/NitrogenMod/";
         private const string assetFolder = modFolder + "Assets/";
@@ -107,7 +108,7 @@
 
         public static void Patch()
         {
-            SeraLogger.PatchStart(modName, "1.5.1");
+            SeraLogger.PatchStart(modName, version);
             try
             {
                 var harmony = new Harmony("seraphimrisen.nitrogenmod.mod");
