@@ -2,7 +2,7 @@
   "Id": "NitrogenMod",
   "DisplayName": "Nitrogen Mod",
   "Author": "SeraphimRisen",
-  "Version": "1.6.0",
+  "Version": "1.6.1",
   "Enable": true,
   "AssemblyName": "NitrogenMod.dll",
   "EntryMethod": "NitrogenMod.Main.Patch",

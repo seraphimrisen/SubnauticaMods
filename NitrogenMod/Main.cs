@@ -14,7 +14,7 @@
     public class Main
     {
         public const string modName = "[NitrogenMod]";
-        public const string version = "1.6.0";
+        public const string version = "1.6.1";
 
         private const string modFolder = "./QMods/NitrogenMod/";
         private const string assetFolder = modFolder + "Assets/";
@@ -58,7 +58,7 @@
             if (minTempBonus > 0)
                 diveSuitMinTemps.Add(diveSuit, minTempBonus);
             if (breathMultiplier != 1f)
-                diveSuitBreathModifiers.Add(diveSuit, minTempBonus);
+                diveSuitBreathModifiers.Add(diveSuit, breathMultiplier);
         }
 
         public static float GetDiveSuitDepth(TechType diveSuit)
