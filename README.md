@@ -1,5 +1,5 @@
 # SubnauticaMods
-These are mods that Seraphim has developed or is developing for Subnautica. Two have been released so far.
+These are mods that Seraphim has developed or is developing for Subnautica. Two have been released so far. They are all free to use as your own code base, including any assets included within, though some of those may be copyright or trademark of Unknown Worlds Entertaingment. I don't have the time or willpower to maintain or update these anymore, so they are free to the community to do as they wish. Kinda a shame I never got to to the Cyclops thermodynamics mod but life is what it is.
 
 -EnzymeChargedBattery: Developed as a clone of PrimeSonic's MidGameBattery to foster understanding of the mod process.
 
